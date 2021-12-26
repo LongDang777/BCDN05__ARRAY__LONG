@@ -30,7 +30,7 @@ function demSoDuong() {
 
 function findMin() {
   var min = numArray[0];
-  for (var i = 0; i < numArray.length; i++) {
+  for (var i = 1; i < numArray.length; i++) {
     if (min > numArray[i]) {
       min = numArray[i];
     }
@@ -40,15 +40,21 @@ function findMin() {
 
 // Bài 4: Tìm số Dương nhỏ nhất
 function findMinDuong() {
-  var min = numArray[0];
+  var posArray = [];
   for (var i = 0; i < numArray.length; i++) {
-    if (min > numArray[i] && numArray[i] > 0) {
-      min = numArray[i];
+    numArray[i] > 0 && posArray.push(numArray[i]);
+  }
+  if (posArray.length > 0) {
+    for (var min = posArray[0], j = 0; j < posArray.length; j++) {
+      if(posArray[j]< min){
+        min = posArray[j];
+      }
     }
   }
   document.getElementById("txtFindMinDuong").innerHTML =
     "Số dương nhỏ nhất: " + min;
 }
+
 // Bài 5: Tìm số chẵn cuối cùng
 
 function timChanEnd() {
@@ -120,38 +126,37 @@ function timSoNguyenTo() {
 }
 
 // Bài 9: Đếm số nguyên
-  var arrayFloat =[];
-function getNum(){
-  var n = Number(document.getElementById('inpNumber').value);
+var arrayFloat = [];
+function getNum() {
+  var n = Number(document.getElementById("inpNumber").value);
   arrayFloat.push(n);
-  document.getElementById('txtThemSo').innerHTML = arrayFloat;
+  document.getElementById("txtThemSo").innerHTML = arrayFloat;
 }
 
-function demSoNguyen(){
-  for(var n=0, i =0; i < arrayFloat.length; i++){
-    if(Number.isInteger(arrayFloat[i])){
+function demSoNguyen() {
+  for (var n = 0, i = 0; i < arrayFloat.length; i++) {
+    if (Number.isInteger(arrayFloat[i])) {
       n++;
     }
   }
-  document.getElementById('txtdemSoNguyen').innerHTML = 'Số nguyên: '+ n;
+  document.getElementById("txtdemSoNguyen").innerHTML = "Số nguyên: " + n;
 }
 
 // Bài 10: so sánh số dương và số âm
 
-function soSanh(){
-  for(var duong=0,am=0, i =0; i< numArray.length; i++){
-    if(numArray[i]>0){
+function soSanh() {
+  for (var duong = 0, am = 0, i = 0; i < numArray.length; i++) {
+    if (numArray[i] > 0) {
       duong++;
-    }else if(numArray[i]<0){
+    } else if (numArray[i] < 0) {
       am++;
-     }
-    }
-    if(duong > am){
-      document.getElementById('txtSoSanh').innerHTML = "Số dương > Số âm";
-    }else if(duong < am){
-      document.getElementById('txtSoSanh').innerHTML = "Số dương < Số âm";
-    }else{
-      document.getElementById('txtSoSanh').innerHTML = "Số dương = Số âm";
-
     }
   }
+  if (duong > am) {
+    document.getElementById("txtSoSanh").innerHTML = "Số dương > Số âm";
+  } else if (duong < am) {
+    document.getElementById("txtSoSanh").innerHTML = "Số dương < Số âm";
+  } else {
+    document.getElementById("txtSoSanh").innerHTML = "Số dương = Số âm";
+  }
+}
